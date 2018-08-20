@@ -1,45 +1,11 @@
-####################################
-#***watterson.factor***
-#k number of alleles
-####################################
-watterson.factor<-function(k)
-{
-  a_k=0;
-  for (i in 1:(k-1))
-  { 
-    a_k=a_k+1/i
-  }
-  
-  return(a_k);
-}
-####################################
-#***pred.sfs.neut***
-#k number of alleles
-# see page 273, Charlesworth and Charlesworth (2010)
-####################################
-pred.sfs.neut<-function(k)
-{
-  a_k=0;
-  v<-vector(length=k-2)
-  for (i in 1:(k-1))
-  { 
-    a_k=a_k+1/i
-  }
-  
-  for (i in 1:(k-1))
-  { 
-    v[i]=1/(i*a_k)
-  }
-  
-  return(v);
-}
+
 ####################################
 #***polymorph.stats***
 #calculates polymophism statistics.
 #Input: v<-an sfs vector
 #Output: a dataframe with the stats
 ####################################
-polymorph.stats<-function(v)
+polymorph_stats<-function(v)
 {
   sites=sum(v)
   v=v[-1]
@@ -81,13 +47,48 @@ polymorph.stats<-function(v)
   
   return(pol_stats)
 }
+####################################
+#***watterson.factor***
+#k number of alleles
+####################################
+watterson_factor<-function(k)
+{
+  a_k=0;
+  for (i in 1:(k-1))
+  { 
+    a_k=a_k+1/i
+  }
+  
+  return(a_k);
+}
+####################################
+#***pred.sfs.neut***
+#k number of alleles
+# see page 273, Charlesworth and Charlesworth (2010)
+####################################
+pred_sfs_neut<-function(k)
+{
+  a_k=0;
+  v<-vector(length=k-2)
+  for (i in 1:(k-1))
+  { 
+    a_k=a_k+1/i
+  }
+  
+  for (i in 1:(k-1))
+  { 
+    v[i]=1/(i*a_k)
+  }
+  
+  return(v);
+}
 
 ####################################
 #***div.jukes***
 #calculates Jukes-Cantor divergence.
 #Input: x<-total sites,y<-site diffs
 ####################################
-div.jukes<-function(x,y)
+div_jukes<-function(x,y)
 {
   d<-vector(length=length(x));
   for (i in 1:length(x))
